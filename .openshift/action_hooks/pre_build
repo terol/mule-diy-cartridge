@@ -1,0 +1,19 @@
+#!/bin/bash
+# This is a simple script and will be executed on your CI system if 
+# available.  Otherwise it will execute while your application is stopped
+# before the build step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+if ! [[ -d ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1 ]]; then
+  # Get Install
+  curl -o ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz http://dist.codehaus.org/mule/distributions/mule-standalone-3.3.1.tar.gz
+
+  # Unzip
+  tar -zxvf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz -C ${OPENSHIFT_DATA_DIR}
+
+  # Remove Zip
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz 
+
+  # Remove all default and example apps
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/apps/*
+fi  

@@ -1,0 +1,7 @@
+#!/bin/bash
+# This deploy hook gets executed after dependencies are resolved and the
+# build hook has been run but before the application has been started back
+# up again.  This script gets executed directly, so it could be python, php,
+# ruby, etc.
+
+cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/apps/
