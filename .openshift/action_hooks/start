@@ -7,5 +7,5 @@
 #run with openshift id
 cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
 
-./mule start
+./mule
     

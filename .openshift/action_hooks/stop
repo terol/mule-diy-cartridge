@@ -3,5 +3,7 @@
 cd ${OPENSHIFT_REPO_DIR}
 
 if [[ -f "server.pid" ]]; then
-  ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/mule stop
+  cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
+
+  ./mule stop
 fi
