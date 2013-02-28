@@ -17,7 +17,7 @@ if ! [[ -d ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1 ]]; then
    
   # Get later version of wrapper
   curl -o ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz http://wrapper.tanukisoftware.com/download/3.5.9/wrapper-delta-pack-3.5.9.tar.gz 
-  
+   
   # Unzip
   tar -zxvf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz  -C ${OPENSHIFT_DATA_DIR}
 
