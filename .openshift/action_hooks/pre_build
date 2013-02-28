@@ -1,5 +1,43 @@
-#!/bin/bash
-# This is a simple script and will be executed on your CI system if 
-# available.  Otherwise it will execute while your application is stopped
-# before the build step.  This script gets executed directly, so it
-# could be python, php, ruby, etc.
+if ! [[ -d ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1 ]]; then
+  # Get Install
+  curl -o ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz http://dist.codehaus.org/mule/distributions/mule-standalone-3.3.1.tar.gz
+
+  # Unzip
+  tar -zxvf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz -C ${OPENSHIFT_DATA_DIR}
+
+  # Remove Zip
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz 
+
+  # Remove all default and example apps   
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/apps/*
+ 
+  # Remove wrapper
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/libwrapper-*
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/wrapper-*
+   
+  # Get later version of wrapper
+  curl -o ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz http://wrapper.tanukisoftware.com/download/3.5.9/wrapper-delta-pack-3.5.9.tar.gz 
+  
+  # Unzip
+  tar -zxvf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz  -C ${OPENSHIFT_DATA_DIR}
+
+  # Remove Zip
+  rm ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz 
+
+  # Copy and replace new wrapper files
+  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/lib/libwrapper-* ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot
+
+  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/lib/wrapper.jar ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/wrapper-3.5.9.jar
+
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/exec/*
+
+  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/bin/wrapper-* ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/exec
+  
+  rm -rf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9 
+
+ # Replace wrapper.conf
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/conf/wrapper.conf
+  
+  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/conf
+
+fi  
