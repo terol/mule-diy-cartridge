@@ -40,4 +40,7 @@ if ! [[ -d ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1 ]]; then
   
   cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/conf
 
+
+  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-3.3.1.jar ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/mule
+
 fi  
