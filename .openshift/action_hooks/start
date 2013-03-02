@@ -1,11 +1,2 @@
-#!/bin/bash
-# The logic to start up your application should be put in this
-# script. The application will work only if it binds to
-# $OPENSHIFT_INTERNAL_IP:8080
-
-
-#run with openshift id
 cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
-
 ./mule
-    
