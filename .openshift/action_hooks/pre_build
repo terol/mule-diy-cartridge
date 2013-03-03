@@ -23,7 +23,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
   tar -zxvf ${OPENSHIFT_DATA_DIR}${MULE_TAR} -C ${OPENSHIFT_DATA_DIR}
 
   # Remove Zip
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}.tar.gz 
+  rm ${OPENSHIFT_DATA_DIR}${MULE_TAR}
 
   # Verify mule install
   if ! [[ -f ${MULE_DIR}bin/mule ]]; then
@@ -43,16 +43,10 @@ if ! [[ -d ${MULE_DIR} ]]; then
   curl -o ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR} ${WRAPPER_URL}
       
   # Unzip
-  tar -zxvf ${WRAPPER_TAR}  -C ${OPENSHIFT_DATA_DIR}
+  tar -zxvf ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}  -C ${OPENSHIFT_DATA_DIR}
 
   # Remove Zip
-  rm ${WRAPPER_TAR}
-
-  # Verify mule install
-  if ! [[ -d ${WRAPPER_DIR} ]]; then
-    echo "Error installing mule ${WRAPPER_VERSION} to ${WRAPPER_DIR}"
-    exit 1
-  fi
+  rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
   # Copy and replace new wrapper files
   cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
