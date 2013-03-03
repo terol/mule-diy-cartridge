@@ -1,4 +1,4 @@
-if [[ ! -f ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin ]]; then
+if [[ ! -f ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule ]]; then
 	echo "Error: couldn't find mule executable at ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule"
 	exit 1
 fi

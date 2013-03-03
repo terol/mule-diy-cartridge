@@ -1,46 +1,75 @@
-if ! [[ -d ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1 ]]; then
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+# validate versions
+if [ "$MULE_VERSION" \< "3.3.1" ]; then
+	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.3.1 or higher"
+	return 1
+fi
+
+if [ "$WRAPPER_VERSION" \< "3.5.8" ]; then
+	echo "Error: Wrapper version ${WRAPPER_VERSION} not supported, use version 3.5.8 or higher"
+	return 1
+fi
+
+if ! [[ -d ${MULE_DIR} ]]; then
+
+  echo "Installing mule ${MULE_VERSION}"
+
   # Get Install
-  curl -o ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz http://dist.codehaus.org/mule/distributions/mule-standalone-3.3.1.tar.gz
+  curl -o ${OPENSHIFT_DATA_DIR}${MULE_TAR} ${MULE_URL}
 
   # Unzip
-  tar -zxvf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz -C ${OPENSHIFT_DATA_DIR}
+  tar -zxvf ${OPENSHIFT_DATA_DIR}${MULE_TAR} -C ${OPENSHIFT_DATA_DIR}
 
   # Remove Zip
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1.tar.gz 
+  rm ${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}.tar.gz 
+
+  # Verify mule install
+  if ! [[ -d ${MULE_DIR}bin/mule ]]; then
+    echo "Error installing mule ${MULE_VERSION} to ${MULE_DIR}"
+    rm -fr ${MULE_DIR}
+    exit 1
+  fi
 
   # Remove all default and example apps   
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/apps/*
+  rm ${MULE_DIR}apps/*
  
-  # Remove wrapper
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/libwrapper-*
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/wrapper-*
+  # Remove wrapper files
+  rm ${MULE_DIR}lib/boot/libwrapper-*
+  rm ${MULE_DIR}lib/boot/wrapper-*
    
   # Get later version of wrapper
-  curl -o ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz http://wrapper.tanukisoftware.com/download/3.5.9/wrapper-delta-pack-3.5.9.tar.gz 
+  curl -o ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR} ${WRAPPER_URL}
       
   # Unzip
-  tar -zxvf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz  -C ${OPENSHIFT_DATA_DIR}
+  tar -zxvf ${WRAPPER_TAR}  -C ${OPENSHIFT_DATA_DIR}
 
   # Remove Zip
-  rm ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9.tar.gz 
+  rm ${WRAPPER_TAR}
+
+  # Verify mule install
+  if ! [[ -d ${WRAPPER_DIR} ]]; then
+    echo "Error installing mule ${WRAPPER_VERSION} to ${WRAPPER_DIR}"
+    exit 1
+  fi
 
   # Copy and replace new wrapper files
-  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/lib/libwrapper-* ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot
+  cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
 
-  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/lib/wrapper.jar ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/wrapper-3.5.9.jar
+  cp ${WRAPPER_DIR}lib/wrapper.jar ${MULE_DIR}lib/boot/wrapper-${WRAPPER_VERSION}.jar
 
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/exec/*
+  rm ${MULE_DIR}lib/boot/exec/*
 
-  cp ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9/bin/wrapper-* ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/boot/exec
+  cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
   
-  rm -rf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-3.5.9 
+  rm -rf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}
 
- # Replace wrapper.conf
-  rm ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/conf/wrapper.conf
+  # Replace wrapper.conf
+  rm ${MULE_DIR}conf/wrapper.conf
   
-  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/conf
+  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf
 
-
-  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-3.3.1.jar ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/lib/mule
+  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}lib/mule
 
 fi  

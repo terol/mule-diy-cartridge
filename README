@@ -1,53 +1,40 @@
-Feel free to change or remove this file, it is informational only.
+Mule 3.3.1 Standalone - Openshift DIY Cartridge
+============================
 
-Get started
-===========
-1. Add framework of choice to your repo.
-2. Modify .openshift/action_hooks/start to start your application.
-   The application is required to bind to $OPENSHIFT_INTERNAL_IP:8080.
-3. Modify .openshift/action_hooks/stop to stop your application.
-4. Commit and push your changes.
-
-Repo layout
-===========
-static/ - Externally exposed static content goes here
-.openshift/action_hooks/start - Script that gets run to start your application
-.openshift/action_hooks/stop - Script that gets run to stop your application
-.openshift/action_hooks/pre_build - Script that gets run every git push before the build
-.openshift/action_hooks/build - Script that gets run every git push as part of the build process (on the CI system if available)
-.openshift/action_hooks/deploy - Script that gets run every git push after build but before the app is restarted
-.openshift/action_hooks/post_deploy - Script that gets run every git push after the app is restarted
-
-Notes about layout
-==================
-Please leave the static directory in place (alter but do not delete) but feel
-free to create additional directories if needed.
-
-Note: Every time you push, everything in your remote repo dir gets recreated
-      please store long term items (like an sqlite database) in the OpenShift
-      data directory, which will persist between pushes of your repo.
-      The OpenShift data directory is accessible relative to the remote repo
-      directory (../data) or using a path constructed as
-      $OPENSHIFT_HOMEDIR/app-root/data.
+This git repository helps you get up and running quickly with a Mule
+on OpenShift.
 
 
-Environment Variables
-=====================
+Running on OpenShift
+----------------------------
 
-OpenShift provides several environment variables to reference for ease
-of use.  The following list are some common variables but far from exhaustive:
+Register at http://openshift.redhat.com/, and then create a raw (do-it-yourself) application:
 
-    $OPENSHIFT_INTERNAL_IP            - IP Address assigned to the application
-    $OPENSHIFT_APP_NAME               - Application name
-    $OPENSHIFT_HOMEDIR/diy-0.1        - Application dir
-    $OPENSHIFT_HOMEDIR/app-root/data  - For persistent storage (between pushes)
-    $OPENSHIFT_TMP_DIR                - Temp storage (unmodified files deleted after 10 days)
+    rhc app create -a mule -t diy-0.1 -l yourlogin@yourmail.com
 
-To get a full list of environment variables, simply add a line in your
-.openshift/action_hooks/build script that says "export" and push.
+Add this upstream mule-diy-cartridge repo:
 
+    cd mule
+    git remote add quickstart -m master https://github.com/ryandcarter/mule-diy-cartridge.git
+    git pull -s recursive -X theirs quickstart master
+    
+Then push the repo upstream:
 
-Additional information
-======================
+    git push
 
-Link to additional information will be here, when we have it :)
+That's it, you can now see your running application at:
+
+    http://mule-diy-cartridge-yournamespace.rhcloud.com
+
+Updating your application
+----------------------------
+
+To deploy your changes to openshift just add your changes to the index, commit and push:
+
+    git add . -A
+    git commit -m "a nice message"
+    git push
+
+Licence
+----------------------------
+This project is distributed under [Apache 2 licence](http://www.apache.org/licenses/LICENSE-2.0.html). 
