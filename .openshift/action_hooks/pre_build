@@ -59,6 +59,12 @@ if ! [[ -d ${MULE_DIR} ]]; then
   
   rm -rf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}
 
+  # Verify wrapper install
+  if ! [[ -f ${MULE_DIR}lib/boot/exec/wrapper-linux-x86-* ]]; then
+    echo "Error installing wrapper ${WRAPPER_VERSION} to ${MULE_DIR}lib/boot/exec/"	
+    exit 1
+  fi
+
   # Replace wrapper.conf
   rm ${MULE_DIR}conf/wrapper.conf
   
