@@ -1,12 +1,11 @@
 if [[ ! -f ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule ]]; then
-	echo "Error: couldn't find mule executable at ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule"
-	exit 1
+  echo "Error: couldn't find mule executable at ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule"
+  exit 1
+else
+  echo "Stopping mule application"
+
+  cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
+  ./mule stop
 fi
-
-echo "Stopping mule application"
-
-cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
-./mule stop
-
 
 
