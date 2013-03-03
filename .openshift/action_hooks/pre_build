@@ -26,7 +26,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
   rm ${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}.tar.gz 
 
   # Verify mule install
-  if ! [[ -d ${MULE_DIR}bin/mule ]]; then
+  if ! [[ -f ${MULE_DIR}bin/mule ]]; then
     echo "Error installing mule ${MULE_VERSION} to ${MULE_DIR}"
     rm -fr ${MULE_DIR}
     exit 1
