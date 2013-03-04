@@ -1,1 +1,1 @@
-cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${MULE_DIR}/apps
+cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${MULE_DIR}/apps/

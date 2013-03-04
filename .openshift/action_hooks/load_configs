@@ -1,12 +1,12 @@
 
-MULE_VERSION="3.3.1"
-MULE_DIR="${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}"
-MULE_TAR="mule-standalone-${MULE_VERSION}.tar.gz"
-MULE_URL=" http://dist.codehaus.org/mule/distributions/${MULE_TAR}"
+export MULE_VERSION="3.3.1"
+export MULE_DIR="${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}"
+export MULE_TAR="mule-standalone-${MULE_VERSION}.tar.gz"
+export MULE_URL=" http://dist.codehaus.org/mule/distributions/${MULE_TAR}"
 
-WRAPPER_VERSION="3.5.9"
-WRAPPER_DIR="${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}"
-WRAPPER_TAR="wrapper-delta-pack-${WRAPPER_VERSION}.tar.gz"
-WRAPPER_URL="http://wrapper.tanukisoftware.com/download/${WRAPPER_VERSION}/${WRAPPER_TAR}"
+export WRAPPER_VERSION="3.5.9"
+export WRAPPER_DIR="${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}"
+export WRAPPER_TAR="wrapper-delta-pack-${WRAPPER_VERSION}.tar.gz"
+export WRAPPER_URL="http://wrapper.tanukisoftware.com/download/${WRAPPER_VERSION}/${WRAPPER_TAR}"
 
 return 0
