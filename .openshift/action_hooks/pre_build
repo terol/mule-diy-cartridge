@@ -26,17 +26,17 @@ if ! [[ -d ${MULE_DIR} ]]; then
   rm ${OPENSHIFT_DATA_DIR}${MULE_TAR}
  
   # Verify mule install
-  if ! [[ -f ${MULE_DIR}/bin/mule ]]; then
+  if ! [[ -f ${MULE_DIR}bin/mule ]]; then
     echo "Error installing mule ${MULE_VERSION} to ${MULE_DIR}"
     exit 1
   fi
 
   # Remove all default and example apps   
-  rm -rf ${MULE_DIR}/examples/*
+  rm -rf ${MULE_DIR}examples/*
  
   # Remove wrapper files
-  rm ${MULE_DIR}/lib/boot/libwrapper-*
-  rm ${MULE_DIR}/lib/boot/wrapper-*
+  rm ${MULE_DIR}lib/boot/libwrapper-*
+  rm ${MULE_DIR}lib/boot/wrapper-*
    
   # Get later version of wrapper
   curl -o ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR} ${WRAPPER_URL}
@@ -48,27 +48,19 @@ if ! [[ -d ${MULE_DIR} ]]; then
   rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
   # Copy and replace new wrapper files
-  cp ${WRAPPER_DIR}/lib/libwrapper-* ${MULE_DIR}/lib/boot
+  cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
 
-  cp ${WRAPPER_DIR}/lib/wrapper.jar ${MULE_DIR}/lib/boot/wrapper-${WRAPPER_VERSION}.jar
+  cp ${WRAPPER_DIR}lib/wrapper.jar ${MULE_DIR}lib/boot/wrapper-${WRAPPER_VERSION}.jar
 
-  rm ${MULE_DIR}/lib/boot/exec/*
+  rm ${MULE_DIR}lib/boot/exec/*
 
-  cp ${WRAPPER_DIR}/bin/wrapper-* ${MULE_DIR}/lib/boot/exec
+  cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
   
-  rm -rf ${WRAPPER_DIR}
-
-  # Verify wrapper install
-  if ! [[ -f ${MULE_DIR}/lib/boot/exec/wrapper-linux-x86-* ]]; then
-    echo "Error installing wrapper ${WRAPPER_VERSION} to ${MULE_DIR}/lib/boot/exec/"	
-    exit 1
-  fi
-
-  # Replace wrapper.conf
-  rm ${MULE_DIR}/conf/wrapper.conf
+  rm -rf ${WRAPPER_DIR}  # Replace wrapper.conf
+  rm ${MULE_DIR}conf/wrapper.conf
   
-  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}/conf
+  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf
 
-  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}/lib/mule
+  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}lib/mule
 
 fi  
