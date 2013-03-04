@@ -1,2 +1,5 @@
-cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+cd ${MULE_DIR}bin
 ./mule

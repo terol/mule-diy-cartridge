@@ -1,12 +1,13 @@
-if [[ ! -f ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin ]]; then
-	echo "Error: couldn't find mule executable at ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin/mule"
-	exit 1
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+if [[ ! -f ${MULE_DIR}bin/mule ]]; then
+  echo "Error: couldn't find mule executable at ${MULE_DIR}bin/mule"
+else
+  echo "Stopping mule application"
+
+  cd ${MULE_DIR}bin
+  ./mule stop
 fi
-
-echo "Stopping mule application"
-
-cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
-./mule stop
-
 
 

@@ -1,1 +1,4 @@
-cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/apps/ 
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${MULE_DIR}apps/
