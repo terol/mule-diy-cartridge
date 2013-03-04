@@ -1,2 +1,2 @@
-cd ${OPENSHIFT_DATA_DIR}mule-standalone-3.3.1/bin
+cd ${MULE_DIR}/bin
 ./mule

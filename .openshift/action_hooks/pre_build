@@ -48,27 +48,27 @@ if ! [[ -d ${MULE_DIR} ]]; then
   rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
   # Copy and replace new wrapper files
-  cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
+  cp ${WRAPPER_DIR}/lib/libwrapper-* ${MULE_DIR}/lib/boot
 
-  cp ${WRAPPER_DIR}lib/wrapper.jar ${MULE_DIR}lib/boot/wrapper-${WRAPPER_VERSION}.jar
+  cp ${WRAPPER_DIR}/lib/wrapper.jar ${MULE_DIR}/lib/boot/wrapper-${WRAPPER_VERSION}.jar
 
-  rm ${MULE_DIR}lib/boot/exec/*
+  rm ${MULE_DIR}/lib/boot/exec/*
 
-  cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
+  cp ${WRAPPER_DIR}/bin/wrapper-* ${MULE_DIR}/lib/boot/exec
   
   rm -rf ${WRAPPER_DIR}
 
   # Verify wrapper install
-  if ! [[ -f ${MULE_DIR}lib/boot/exec/wrapper-linux-x86-* ]]; then
-    echo "Error installing wrapper ${WRAPPER_VERSION} to ${MULE_DIR}lib/boot/exec/"	
+  if ! [[ -f ${MULE_DIR}/lib/boot/exec/wrapper-linux-x86-* ]]; then
+    echo "Error installing wrapper ${WRAPPER_VERSION} to ${MULE_DIR}/lib/boot/exec/"	
     exit 1
   fi
 
   # Replace wrapper.conf
-  rm ${MULE_DIR}conf/wrapper.conf
+  rm ${MULE_DIR}/conf/wrapper.conf
   
-  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf
+  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}/conf
 
-  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}lib/mule
+  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}/lib/mule
 
 fi  
