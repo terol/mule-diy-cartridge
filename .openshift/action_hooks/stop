@@ -1,3 +1,6 @@
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
 if [[ ! -f ${MULE_DIR}/bin/mule ]]; then
   echo "Error: couldn't find mule executable at ${MULE_DIR}/bin/mule"
 else

@@ -1,2 +1,5 @@
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
 cd ${MULE_DIR}/bin
 ./mule
