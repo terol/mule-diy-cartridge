@@ -24,7 +24,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
 
   # Remove Zip
   rm ${OPENSHIFT_DATA_DIR}${MULE_TAR}
-
+ 
   # Verify mule install
   if ! [[ -f ${MULE_DIR}bin/mule ]]; then
     echo "Error installing mule ${MULE_VERSION} to ${MULE_DIR}"
