@@ -26,17 +26,17 @@ if ! [[ -d ${MULE_DIR} ]]; then
   rm ${OPENSHIFT_DATA_DIR}${MULE_TAR}
  
   # Verify mule install
-  if ! [[ -f ${MULE_DIR}bin/mule ]]; then
+  if ! [[ -f ${MULE_DIR}/bin/mule ]]; then
     echo "Error installing mule ${MULE_VERSION} to ${MULE_DIR}"
     exit 1
   fi
 
   # Remove all default and example apps   
-  rm -rf ${MULE_DIR}examples/*
+  rm -rf ${MULE_DIR}/examples/*
  
   # Remove wrapper files
-  rm ${MULE_DIR}lib/boot/libwrapper-*
-  rm ${MULE_DIR}lib/boot/wrapper-*
+  rm ${MULE_DIR}/lib/boot/libwrapper-*
+  rm ${MULE_DIR}/lib/boot/wrapper-*
    
   # Get later version of wrapper
   curl -o ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR} ${WRAPPER_URL}
