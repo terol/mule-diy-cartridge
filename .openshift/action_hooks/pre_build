@@ -56,7 +56,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
 
   cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
   
-  rm -rf ${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}
+  rm -rf ${WRAPPER_DIR}
 
   # Verify wrapper install
   if ! [[ -f ${MULE_DIR}lib/boot/exec/wrapper-linux-x86-* ]]; then
