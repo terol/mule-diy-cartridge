@@ -44,7 +44,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
   # Unzip
   tar -zxvf ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR} -C ${OPENSHIFT_DATA_DIR}
 
-  # Remove Zip
+  # Remove Zip   
   rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
   # Copy and replace new wrapper files
