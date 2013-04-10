@@ -18,7 +18,7 @@ Add this upstream mule-diy-cartridge repo:
     git remote add quickstart -m master https://github.com/ryandcarter/mule-diy-cartridge.git
     git pull -s recursive -X theirs quickstart master
     
-Then push the repo upstream:
+Then push the repo upstream:  
 
     git push
 
