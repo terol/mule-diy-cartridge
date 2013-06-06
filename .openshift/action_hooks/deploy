@@ -1,4 +1,4 @@
 #loads configs - versions and directories etc.
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
-cp ${OPENSHIFT_REPO_DIR}helloworld.zip ${MULE_DIR}apps/
+cp ${OPENSHIFT_REPO_DIR}*.zip ${MULE_DIR}apps/

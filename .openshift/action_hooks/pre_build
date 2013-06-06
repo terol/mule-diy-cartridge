@@ -2,7 +2,7 @@
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
 # validate versions
-if [ "$MULE_VERSION" \< "3.3.1" ]; then
+if [ "$MULE_VERSION" \< "3.4.0" ]; then
 	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.3.1 or higher"
 	return 1
 fi
@@ -56,11 +56,11 @@ if ! [[ -d ${MULE_DIR} ]]; then
 
   cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
   
-  rm -rf ${WRAPPER_DIR}  # Replace wrapper.conf
+  rm -rf ${WRAPPER_DIR}  
+
+  # Replace wrapper.conf
   rm ${MULE_DIR}conf/wrapper.conf
   
   cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf
-
-  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}lib/mule
 
 fi  
