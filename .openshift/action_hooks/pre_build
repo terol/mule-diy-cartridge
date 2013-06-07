@@ -3,7 +3,7 @@
 
 # validate versions
 if [ "$MULE_VERSION" \< "3.4.0" ]; then
-	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.3.1 or higher"
+	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.4.0 or higher"
 	return 1
 fi
 
@@ -47,7 +47,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
   # Remove Zip   
   rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
-  # Copy and replace new wrapper files
+  # Copy and replace wrapper binaries with new
   cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
 
   cp ${WRAPPER_DIR}lib/wrapper.jar ${MULE_DIR}lib/boot/wrapper-${WRAPPER_VERSION}.jar
@@ -58,7 +58,7 @@ if ! [[ -d ${MULE_DIR} ]]; then
   
   rm -rf ${WRAPPER_DIR}  
 
-  # Replace wrapper.conf
+  # Replace wrapper.conf wit ammended wrapper.conf containing 'wrapper.backend.type=PIPE'
   rm ${MULE_DIR}conf/wrapper.conf
   
   cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf

@@ -1,4 +1,5 @@
 #loads configs - versions and directories etc.
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
+#deploy all zips from repo dir.
 cp ${OPENSHIFT_REPO_DIR}*.zip ${MULE_DIR}apps/
