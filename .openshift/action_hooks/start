@@ -2,4 +2,4 @@
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
 cd ${MULE_DIR}bin
-./mule
+./mule -W-Dwrapper.backend.type=PIPE
