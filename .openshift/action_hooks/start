@@ -2,4 +2,7 @@
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
 cd ${MULE_DIR}bin
-./mule -W-Dwrapper.backend.type=PIPE
+./mule -Wwrapper.backend.type=PIPE -Wwrapper.port.min=15000 -Wwrapper.port.max=35530
+
+
+
