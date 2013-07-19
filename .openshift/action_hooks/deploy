@@ -2,4 +2,4 @@
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
 #deploy all zips from repo dir.
-cp ${OPENSHIFT_REPO_DIR}*.zip ${MULE_DIR}apps/
+cp ${OPENSHIFT_REPO_DIR}/target/*.zip ${MULE_DIR}apps/
