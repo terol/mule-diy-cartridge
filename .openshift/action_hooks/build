@@ -2,7 +2,11 @@
 # This is a simple build script and will be executed on your CI system if 
 # available.  Otherwise it will execute while your application is stopped
 # before the deploy step.  This script gets executed directly, so it
+<<<<<<< HEAD
 # could be python, php, ruby, etc.
 
 cd $OPENSHIFT_REPO_DIR
 mvn package
+=======
+# could be python, php, ruby, etc.
+>>>>>>> 718184c15ee44b3dda333845ffda9a6d9774ad60

@@ -1,9 +1,18 @@
+<<<<<<< HEAD
 # Loads configs - versions and directories etc.
 . ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
 
 # Validate versions
 if [ "$MULE_VERSION" \< "3.4.0" ]; then
 	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.4.0 or higher"
+=======
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+# validate versions
+if [ "$MULE_VERSION" \< "3.3.1" ]; then
+	echo "Error: Mule version ${MULE_VERSION} not supported, use version 3.3.1 or higher"
+>>>>>>> 718184c15ee44b3dda333845ffda9a6d9774ad60
 	return 1
 fi
 
@@ -47,7 +56,11 @@ if ! [[ -d ${MULE_DIR} ]]; then
   # Remove Zip   
   rm ${OPENSHIFT_DATA_DIR}${WRAPPER_TAR}
 
+<<<<<<< HEAD
   # Copy and replace wrapper binaries with new
+=======
+  # Copy and replace new wrapper files
+>>>>>>> 718184c15ee44b3dda333845ffda9a6d9774ad60
   cp ${WRAPPER_DIR}lib/libwrapper-* ${MULE_DIR}lib/boot
 
   cp ${WRAPPER_DIR}lib/wrapper.jar ${MULE_DIR}lib/boot/wrapper-${WRAPPER_VERSION}.jar
@@ -56,6 +69,16 @@ if ! [[ -d ${MULE_DIR} ]]; then
 
   cp ${WRAPPER_DIR}bin/wrapper-* ${MULE_DIR}lib/boot/exec
   
+<<<<<<< HEAD
   # Cleanup
   rm -rf ${WRAPPER_DIR}
+=======
+  rm -rf ${WRAPPER_DIR}  # Replace wrapper.conf
+  rm ${MULE_DIR}conf/wrapper.conf
+  
+  cp ${OPENSHIFT_REPO_DIR}wrapper.conf ${MULE_DIR}conf
+
+  cp ${OPENSHIFT_REPO_DIR}mule-transport-tcp-${MULE_VERSION}.jar ${MULE_DIR}lib/mule
+
+>>>>>>> 718184c15ee44b3dda333845ffda9a6d9774ad60
 fi  
