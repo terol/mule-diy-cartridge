@@ -13,8 +13,8 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
   	class="org.ryandcarter.util.SocketFactoryOverrider" />
   
   <flow name="HelloWorldFlow">
-    <http:inbound-endpoint exchange-pattern="request-response" host="${OPENSHIFT_INTERNAL_IP}" port="8080" />
-    <http:outbound-endpoint exchange-pattern="request-response" address="http://mymemory.translated.net/api/get?q=Hello%20World!&amp;langpair=en|it" />
+    <http:inbound-endpoint exchange-pattern="request-response" host="${OPENSHIFT_DIY_IP}" port="8080" />
+    <http:outbound-endpoint exchange-pattern="request-response" address="http://mymemory.translated.net/api/get?q=Hello%20World!&amp;langpair=en%7Cit" />
   </flow>
   
 </mule> 
