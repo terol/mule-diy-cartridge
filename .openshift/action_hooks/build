@@ -4,5 +4,12 @@
 # before the deploy step.  This script gets executed directly, so it
 # could be python, php, ruby, etc.
 
+#loads configs - versions and directories etc.
+. ${OPENSHIFT_REPO_DIR}.openshift/action_hooks/load_configs
+
+cd $OPENSHIFT_DATA_DIR
+echo -e  "<settings>\n   <localRepository>$OPENSHIFT_DATA_DIR</localRepository>\n</settings>\n" > settings.xml
+
 cd $OPENSHIFT_REPO_DIR
-mvn package
+
+mvn package -s $OPENSHIFT_DATA_DIR/settings.xml

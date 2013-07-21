@@ -9,4 +9,6 @@ WRAPPER_DIR="${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}/"
 WRAPPER_TAR="wrapper-delta-pack-${WRAPPER_VERSION}.tar.gz"
 WRAPPER_URL="http://wrapper.tanukisoftware.com/download/${WRAPPER_VERSION}/${WRAPPER_TAR}"
 
+M2_REPO=$OPENSHIFT_DATA_DIR/.m2
+
 return 0
