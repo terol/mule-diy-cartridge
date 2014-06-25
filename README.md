@@ -1,4 +1,4 @@
-Mule 3.3.1 Standalone - Openshift DIY Cartridge
+Mule 3.x Standalone - Openshift DIY Cartridge
 ============================
 
 This git repository helps you get up and running quickly with a Mule
