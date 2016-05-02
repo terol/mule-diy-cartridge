@@ -1,9 +1,8 @@
 
-MULE_VERSION="3.4.0"
+MULE_VERSION="3.7.0"
 MULE_DIR="${OPENSHIFT_DATA_DIR}mule-standalone-${MULE_VERSION}/"
 MULE_TAR="mule-standalone-${MULE_VERSION}.tar.gz"
-MULE_URL=" http://dist.codehaus.org/mule/distributions/${MULE_TAR}"
-
+MULE_URL=" https://repository.mulesoft.org/nexus/content/repositories/releases/org/mule/distributions/mule-standalone/${MULE_TAR}"
 WRAPPER_VERSION="3.5.9"
 WRAPPER_DIR="${OPENSHIFT_DATA_DIR}wrapper-delta-pack-${WRAPPER_VERSION}/"
 WRAPPER_TAR="wrapper-delta-pack-${WRAPPER_VERSION}.tar.gz"
