@@ -20,9 +20,9 @@
 	</properties>
 
 	<build>
-		<!-- Use a newer version of the install plugin than what your Maven uses 
-			by default. The older version failed to install the project if there was 
-			no target/classes folder. Since we use mule packaging on the project we actually 
+		<!-- Use a newer version of the install plugin than what your Maven uses
+			by default. The older version failed to install the project if there was
+			no target/classes folder. Since we use mule packaging on the project we actually
 			create and attach the zip that must be installed. -->
 		<pluginManagement>
 			<plugins>
@@ -31,7 +31,7 @@
 					<artifactId>maven-install-plugin</artifactId>
 					<version>2.3.1</version>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -225,7 +225,7 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Xml configuration -->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
@@ -242,7 +242,7 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Mule Modules -->
 		<dependency>
 			<groupId>org.mule.modules</groupId>
@@ -250,7 +250,7 @@
 			<version>${mule.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- for testing -->
 		<dependency>
 			<groupId>org.mule.tests</groupId>
@@ -311,4 +311,28 @@
 		</pluginRepository>
 	</pluginRepositories>
 
+	<profiles>
+	    <profile>
+	     <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+	     <!-- Use this profile for any OpenShift specific customization your app will need. -->
+	     <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+	     <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+	     <id>openshift</id>
+	     <build>
+	        <finalName>mymuleapp</finalName>
+	        <plugins>
+	          <plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-war-plugin</artifactId>
+	                <version>2.3</version>
+	                <configuration>
+	                    <failOnMissingWebXml>false</failOnMissingWebXml>
+	                    <outputDirectory>target</outputDirectory>
+	              		  <warName>ROOT</warName>
+	                </configuration>
+	            </plugin>
+	        </plugins>
+	      </build>
+	    </profile>
+	  </profiles>
 </project>
